@@ -6,6 +6,19 @@ class Livro(models.Model):
         ('DIGITAL', 'Digital'),
     ]
 
+    CATEGORIA_CHOICES = [
+        ('000', '000 – Generalidades e Informação: Obras gerais, enciclopédias, jornais e biblioteconomia.'),
+        ('100', '100 – Filosofia e Psicologia: Ética, lógica e investigações sobre a mente humana.'),
+        ('200', '200 – Religião e Teologia: Mitologia, teologia e estudos sobre crenças e religiões.'),
+        ('300', '300 – Ciências Sociais e Direito: Política, economia, sociologia, educação e leis.'),
+        ('400', '400 – Linguística e Idiomas: Gramáticas, dicionários e estudos de línguas.'),
+        ('500', '500 – Ciências Puras (Exatas e Naturais): Matemática, física, química, biologia e astronomia.'),
+        ('600', '600 – Ciências Aplicadas (Tecnologia): Medicina, engenharia, agricultura e administração.'),
+        ('700', '700 – Artes e Recreação: Pintura, música, arquitetura, esportes e lazer.'),
+        ('800', '800 – Literatura: Poesia, romances, contos, crônicas e crítica literária.'),
+        ('900', '900 – História e Geografia: Biografias, viagens e acontecimentos históricos.'),
+    ]
+
     titulo = models.CharField(max_length=200)
     autor = models.CharField(max_length=100)
     ano = models.IntegerField()
@@ -15,6 +28,12 @@ class Livro(models.Model):
         choices=TIPO_CHOICES,
         default='FISICO',
         verbose_name='Tipo de Acervo'
+    )
+    categoria = models.CharField(
+        max_length=3,
+        choices=CATEGORIA_CHOICES,
+        default='000',
+        verbose_name='Categoria'
     )
 
     def __str__(self):
